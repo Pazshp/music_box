@@ -7,6 +7,7 @@ SoftwareSerial mySerial(10, 11);
 # define Acknowledge 0x00 //Returns info with command 0x41 [0x01: info, 0x00: no info]
 
 # define ACTIVATED LOW
+# define PI 3.1415926535897932384626433832795
 
 int buttonNext = 2;
 int buttonPause = 3;
@@ -14,6 +15,8 @@ int buttonPrevious = 4;
 int volumeUP = 5;
 int volumeDOWN = 6;
 int volume = 40;
+float weelRadius = 31;
+float weelPerimeter = 2 * PI  * weelRadius;
 boolean isPlaying = false;
 
 
@@ -31,8 +34,7 @@ void setup () {
   delay(1000);
   playFirst();
   isPlaying = true;
-
-
+  
 }
 
 
@@ -46,7 +48,7 @@ void loop () {
   } else {
     digitalWrite(LED_BUILTIN, LOW);
   }
-  
+
 
   if (digitalRead(buttonPause) == ACTIVATED)
   {
